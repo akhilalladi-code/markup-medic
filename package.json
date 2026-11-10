@@ -1,0 +1,16 @@
+{
+  "name": "markup-medic",
+  "version": "1.0.0",
+  "private": false,
+  "type": "module",
+  "description": "A browser-based HTML accessibility preflight powered by Go WebAssembly.",
+  "scripts": {
+    "test": "go test ./...",
+    "build": "node scripts/build.mjs",
+    "check": "go vet ./... && node --check src/app.js && node --check scripts/build.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "go": ">=1.23.0"
+  }
+}

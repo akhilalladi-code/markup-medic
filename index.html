@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101411">
+  <meta name="description" content="A private, browser-based HTML accessibility preflight. Inspect markup, find common accessibility issues, and export a report without uploading files.">
+  <title>MarkupMedic — HTML accessibility preflight</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./wasm_exec.js"></script>
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./" aria-label="MarkupMedic home"><span class="brand-mark">M<span>+</span></span><span>Markup<span class="brand-muted">Medic</span></span></a><span class="local-pill"><i></i> Runs locally in your browser</span></header>
+  <main class="shell">
+    <section class="intro"><div class="eyebrow">FRONTEND QUALITY · ACCESSIBILITY PREFLIGHT</div><h1>Catch the markup issues<br><em>before they ship.</em></h1><p>Inspect an HTML file or paste a snippet. Get a focused report of common accessibility problems — privately, without uploading your code.</p></section>
+    <section class="workspace" aria-labelledby="workspace-title">
+      <div class="workspace-head"><div><span class="step">01 / INPUT</span><h2 id="workspace-title">Bring your HTML</h2></div><button class="text-button" id="load-sample" type="button">Load sample</button></div>
+      <div class="dropzone" id="dropzone"><div class="upload-icon" aria-hidden="true">↑</div><div><strong>Drop an HTML file here</strong><span>or <button id="choose-file" class="inline-button" type="button">browse files</button> · .html / .htm · max 2 MB</span></div><input id="file-input" type="file" accept=".html,.htm,text/html" hidden></div>
+      <label class="field-label" for="html-input">Or paste HTML source</label><textarea id="html-input" spellcheck="false" placeholder="<!doctype html>\n<html lang=&quot;en&quot;>\n  ...\n</html>" rows="9"></textarea>
+      <div class="action-row"><span id="status" role="status" aria-live="polite">Your source stays on this device.</span><div><button class="secondary-button" id="clear" type="button">Clear</button><button class="primary-button" id="run-audit" type="button">Run accessibility audit <span>↗</span></button></div></div>
+    </section>
+    <section id="empty-state" class="empty-state"><span class="scan-symbol" aria-hidden="true">⌕</span><h2>Your report will appear here</h2><p>MarkupMedic checks accessible names, image alternatives, form labels, heading structure, landmarks, document metadata and more.</p></section>
+    <section id="report" hidden aria-live="polite">
+      <div class="report-head"><div><span class="step">02 / RESULTS</span><h2>Audit report</h2></div><button id="export-report" class="secondary-button" type="button">Export JSON ↓</button></div>
+      <div class="metrics"><article><span>Errors</span><strong id="error-count">0</strong></article><article><span>Warnings</span><strong id="warning-count">0</strong></article><article><span>Elements scanned</span><strong id="element-count">0</strong></article></div>
+      <div id="finding-list" class="finding-list"></div>
+      <p class="disclaimer">A heuristic preflight, not a substitute for keyboard testing, screen-reader testing, or a full WCAG conformance audit.</p>
+    </section>
+    <section class="checks"><div class="eyebrow">WHAT IT LOOKS FOR</div><div class="check-grid"><div><b>01</b><strong>Accessible names</strong><span>Links, buttons, images and form controls</span></div><div><b>02</b><strong>Document structure</strong><span>Language, title, headings and landmarks</span></div><div><b>03</b><strong>Safer markup</strong><span>Duplicate IDs, iframe titles and new-tab links</span></div></div></section>
+    <footer><span>MARKUPMEDIC · OPEN SOURCE · MIT</span><span>Built for thoughtful frontend quality.</span></footer>
+  </main>
+</body>
+</html>
